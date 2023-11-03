@@ -14,5 +14,8 @@ length_of_membership = st.number_input('Length of Membership (in years)', min_va
 if st.button('Predict Yearly Expenditure'):
     user_input_scaled = scaler.transform([[avg_session_length, time_on_app, time_on_website, length_of_membership]])    
     prediction = model.predict(user_input_scaled)
-    st.success(f'The predicted yearly expenditure is: ${prediction[0]:.2f}')
+    if(prediction[0]<0):
+        st.success(f'The predicted yearly expenditure is: ${0.00}')
+    else:
+        st.success(f'The predicted yearly expenditure is: ${prediction[0]:.2f}')
 
